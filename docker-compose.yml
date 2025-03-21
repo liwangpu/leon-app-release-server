@@ -1,19 +1,21 @@
-version: '2'
+version: "3"
 services:
   web:
     build: .
+    container_name: abstrolabe-release-server
+    image: registry.cn-shanghai.aliyuncs.com/leon-pu/abstrolabe-release-server:latest
     environment:
-      WEBSITE_TITLE: 'Test Title'
-      WEBSITE_HOME_CONTENT: 'Test Content'
-      WEBSITE_NAV_LOGO: ''
-      WEBSITE_APP_TITLE: 'Test App Title'
-      APP_USERNAME: username
-      APP_PASSWORD: password
-      DB_HOST: db
-      DB_PORT: 5432
-      DB_USERNAME: releaseserver
-      DB_NAME: releaseserver
-      DB_PASSWORD: secret
+      WEBSITE_TITLE: "TikPulse"
+      WEBSITE_HOME_CONTENT: "TikPulse"
+      WEBSITE_NAV_LOGO: ""
+      WEBSITE_APP_TITLE: "TikPulse"
+      APP_USERNAME: Leon
+      APP_PASSWORD: Leon.pu199139!
+      DB_HOST: 106.55.173.188
+      DB_PORT: 9201
+      DB_USERNAME: postgres
+      DB_NAME: astrolabe
+      DB_PASSWORD: Leon.pu199139!
       # DEKs should be 32 bytes long, and cryptographically random.
       # You can generate such a key by running the following:
       #   require('crypto').randomBytes(32).toString('base64')
@@ -22,22 +24,22 @@ services:
       # Recommended: 63 random alpha-numeric characters
       # Generate using: https://www.grc.com/passwords.htm
       TOKEN_SECRET: change_me_in_production
-      APP_URL: 'localhost:8080'
-      ASSETS_PATH: '/usr/src/electron-release-server/releases'
-    depends_on:
-      - db
+      APP_URL: "localhost:8080"
+      ASSETS_PATH: "/usr/src/electron-release-server/releases"
+    # depends_on:
+    #   - db
     ports:
-      - '8080:80'
-    entrypoint: ./scripts/wait.sh db:5432 -- npm start
+      - "8080:80"
+    entrypoint: ./scripts/wait.sh db:9201 -- npm start
     volumes:
       - ./releases:/usr/src/electron-release-server/releases
-  db:
-    image: postgres:11
-    environment:
-      POSTGRES_PASSWORD: secret
-      POSTGRES_USER: releaseserver
-    volumes:
-      - postgres:/var/lib/postgresql/data
+  # db:
+  #   image: postgres:11
+  #   environment:
+  #     POSTGRES_PASSWORD: secret
+  #     POSTGRES_USER: releaseserver
+  #   volumes:
+  #     - postgres:/var/lib/postgresql/data
 
 volumes:
   postgres:
