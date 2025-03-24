@@ -5,10 +5,10 @@ services:
     container_name: abstrolabe-release-server
     image: registry.cn-shanghai.aliyuncs.com/leon-pu/abstrolabe-release-server:latest
     environment:
-      WEBSITE_TITLE: "TikPulse"
-      WEBSITE_HOME_CONTENT: "TikPulse"
+      WEBSITE_TITLE: "TIKPULSE"
+      WEBSITE_HOME_CONTENT: "TIKPULSE"
       WEBSITE_NAV_LOGO: ""
-      WEBSITE_APP_TITLE: "TikPulse"
+      WEBSITE_APP_TITLE: "TIKPULSE"
       APP_USERNAME: Leon
       APP_PASSWORD: Leon.pu199139!
       DB_HOST: 106.55.173.188
